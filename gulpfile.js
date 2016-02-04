@@ -90,24 +90,27 @@ gulp.task('compress', ['resizeThumbs', 'compressFolderImg', 'compressFolderImage
 
 /** Copy Files **/
 gulp.task('copyHTML', function() {
-    gulp.src('public/src/*.html')
+    var srcHTML = gulp.src('public/src/*.html')
         .pipe(gulp.dest('public/dist'));
-    gulp.src('public/src/views/pizza.html')
+
+    var viewsHTML = gulp.src('public/src/views/pizza.html')
         .pipe(gulp.dest('public/dist/views'));
+
+    return merge(srcHTML, viewsHTML);
 });
 
 gulp.task('copyCSS', function() {
-    gulp.src('public/src/views/css/*.css')
+    return gulp.src('public/src/views/css/*.css')
         .pipe(gulp.dest('public/dist/views/css'));
 });
 
 gulp.task('copyJS', function() {
-    gulp.src('public/src/js/perfmatters.js')
+    return gulp.src('public/src/js/perfmatters.js')
         .pipe(gulp.dest('public/dist/js'));
 });
 
 gulp.task('copyPIZZA', function() {
-    gulp.src('public/src/views/images/pizza.png')
+    return gulp.src('public/src/views/images/pizza.png')
         .pipe(gulp.dest('public/dist/views/images'));
 });
 
