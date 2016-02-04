@@ -66,7 +66,7 @@ Steps to re-build the project:
   * Use `getElementsByClassName` instead of `querySelectorAll`
   * Save `scrollTop` variable outside loop
   * Save phase sequence values in an array
-  * Use `transform` instead of `left` to x-axis position of `pizza.png`
+  * Use `transform` instead of `left` to set x-axis position of `pizza.png`
 6. Refactor `DOMContentLoaded` event listener function
   * Removed `height` and `width` properties, already defined in `.mover` class
   * Removed `basicLeft` and set `left` property
