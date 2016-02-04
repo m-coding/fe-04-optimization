@@ -2,6 +2,7 @@
 
 var gulp = require('gulp'),
     del = require('del'),
+    merge = require('merge-stream'),
     eslint = require('gulp-eslint'),
     cssnano = require('gulp-cssnano'),
     uglify = require('gulp-uglify'),
@@ -92,10 +93,8 @@ gulp.task('compress', ['resizeThumbs', 'compressFolderImg', 'compressFolderImage
 gulp.task('copyHTML', function() {
     var srcHTML = gulp.src('public/src/*.html')
         .pipe(gulp.dest('public/dist'));
-
     var viewsHTML = gulp.src('public/src/views/pizza.html')
         .pipe(gulp.dest('public/dist/views'));
-
     return merge(srcHTML, viewsHTML);
 });
 
