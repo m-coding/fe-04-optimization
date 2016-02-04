@@ -2,21 +2,21 @@
 
 ###Local
 
-Find the `dist` folder in the project and open `index.html`
+After building, find the `dist` folder in the project and open `index.html`
 
 ###Online
 
 View on github at [http://m-coding.github.io/fe-04-optimization](http://m-coding.github.io/fe-04-optimization/)
 
-###Re-build the Project
+###Build the Project
 
-Steps to re-build the project:
+Steps to build the project:
 
 1. Make sure you satisfy the Build Tool Requirements first.
 2. Navigate to the root of the project directory.
 3. In your terminal, enter the command `gulp clean` to delete everything in the `dist` folder.
   * If you want to preview what files will be deleted, enter the command `gulp cleanDryRun` instead.
-4. Next enter the command `gulp` and the project will be re-built in the `dist` folder.
+4. Next enter the command `gulp` and the project will be built in the `dist` folder.
   * You can review differences by comparing the `src` and `dist` folder.
 
 ##Build Tool Requirements
