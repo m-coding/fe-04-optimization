@@ -53,7 +53,7 @@ gulp.task('minifyJS', function() {
     return gulp.src('public/src/views/js/main.js')
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('public/dist/views/js/'));
+        .pipe(gulp.dest('public/dist/views/js'));
 });
 
 /** All Minify Tasks **/
@@ -93,7 +93,7 @@ gulp.task('copyHTML', function() {
     gulp.src('public/src/*.html')
         .pipe(gulp.dest('public/dist'));
     gulp.src('public/src/views/pizza.html')
-        .pipe(gulp.dest('public/dist/views/'));
+        .pipe(gulp.dest('public/dist/views'));
 });
 
 gulp.task('copyCSS', function() {
@@ -108,7 +108,7 @@ gulp.task('copyJS', function() {
 
 gulp.task('copyPIZZA', function() {
     gulp.src('public/src/views/images/pizza.png')
-        .pipe(gulp.dest('public/dist/views/images/'));
+        .pipe(gulp.dest('public/dist/views/images'));
 });
 
 /** All Copy File Tasks **/
