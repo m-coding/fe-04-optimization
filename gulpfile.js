@@ -79,17 +79,11 @@ gulp.task('compressFolderImg', ['resizeThumbs'], function() {
 });
 
 gulp.task('compressFolderImages', ['compressFolderImg'], function() {
-    var jpgImages = gulp.src(['public/src/views/images/*.jpg'])
+    return gulp.src(['public/src/views/images/*'])
         .pipe(newer('public/dist/views/images'))
         .pipe(resize({ width: 360 }))
-        .pipe(imagemin({ progressive: true })).on('error', errorHandler)
+        .pipe(imagemin({ progressive: true, use: [pngquant()] })).on('error', errorHandler)
         .pipe(gulp.dest('public/dist/views/images'));
-    var pngImages =  gulp.src(['public/src/views/images/*.png'])
-        .pipe(newer('public/dist/views/images'))
-        .pipe(resize({ width: 77, height: 100 })).on('error', errorHandler)
-        .pipe(imagemin({ use: [pngquant()] }))
-        .pipe(gulp.dest('public/dist/views/images'));
-    return merge(jpgImages, pngImages);
 });
 
 /** All Image Compression Tasks **/

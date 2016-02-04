@@ -54,21 +54,20 @@ Steps to re-build the project:
 ####pizza.html
 
 1. Resized large images to be a max width of 360px
-2. Resized `pizza.png` to be 77px by 100px
-3. Add properties to the `.mover` class in `style.css`
-  * Set width and height properties to match `pizza.png`
+2. Add properties to the `.mover` class in `style.css`
+  * Set width and height properties
   * Add `transform: translateZ(0);` and `will-change: transform;` properties
-4. Refactor `changePizzaSizes()` in `main.js` to prevent Force Synchronous Layout
+3. Refactor `changePizzaSizes()` in `main.js` to prevent Force Synchronous Layout
   * Move `sizeSwitcher()` logic here and remove `determineDx()`
   * Create new variable outside loop
   * Simplified loop logic
-5. Refactor `updatePositions()` in `main.js` to reduce Scripting Time
+4. Refactor `updatePositions()` in `main.js` to reduce Scripting Time
   * Use `getElementsByClassName` instead of `querySelectorAll`
   * Save `scrollTop` variable outside loop
   * Save phase sequence values in an array
   * Use `transform` instead of `left` to set x-axis position of `pizza.png`
-6. Refactor `DOMContentLoaded` event listener function
+5. Refactor `DOMContentLoaded` event listener function
   * Removed `height` and `width` properties, already defined in `.mover` class
   * Removed `basicLeft` and set `left` property
   * Use `getElementById` instead of `querySelector`
-7. Minified `main.js`
+6. Minified `main.js`
