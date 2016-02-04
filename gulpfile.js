@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     newer = require('gulp-newer'),
     resize = require('gulp-image-resize'),
     imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
     rename = require('gulp-rename');
 
 /** Default **/
@@ -64,7 +65,7 @@ gulp.task('compressFolderImg', function() {
     return gulp.src(['public/src/img/*', '!public/src/img/th_*'])
         .pipe(newer('public/dist/img'))
         .pipe(resize({ width: 480 }))
-        .pipe(imagemin({ progressive: true })).on('error', errorHandler)
+        .pipe(imagemin({ progressive: true, use: [pngquant()] })).on('error', errorHandler)
         .pipe(gulp.dest('public/dist/img'));
 });
 
@@ -72,7 +73,7 @@ gulp.task('compressFolderImages', function() {
     return gulp.src(['public/src/views/images/*'])
         .pipe(newer('public/dist/views/images'))
         .pipe(resize({ width: 360 }))
-        .pipe(imagemin({ progressive: true })).on('error', errorHandler)
+        .pipe(imagemin({ progressive: true, use: [pngquant()] })).on('error', errorHandler)
         .pipe(gulp.dest('public/dist/views/images'));
 });
 
