@@ -8,17 +8,6 @@ After building, find the `dist` folder in the project and open `index.html`
 
 View on github at [http://m-coding.github.io/fe-04-optimization](http://m-coding.github.io/fe-04-optimization/)
 
-###Build the Project
-
-Steps to build the project:
-
-1. Make sure you satisfy the Build Tool Requirements first.
-2. Navigate to the root of the project directory.
-3. In your terminal, enter the command `gulp clean` to delete everything in the `dist` folder.
-  * If you want to preview what files will be deleted, enter the command `gulp cleanDryRun` instead.
-4. Next enter the command `gulp` and the project will be built in the `dist` folder.
-  * You can review differences by comparing the `src` and `dist` folder.
-
 ##Build Tool Requirements
 
 1. [Node.js](https://nodejs.org/en/download/)
@@ -34,6 +23,17 @@ Steps to build the project:
   * In your terminal enter the command:
     * `npm install`
     * This will install all modules listed as dependencies in `package.json`
+
+##Build the Project
+
+Make sure you satisfy the Build Tool Requirements first.
+
+1. Navigate to the root of the project directory in your terminal.
+2. Check that `node_modules` folder exists. If not, see step 3 under Build Tool Requirements.
+4. Enter the command `gulp clean` to delete everything in the `dist` folder.
+  * If you want to preview what files will be deleted, enter the command `gulp cleanDryRun` instead.
+5. Next enter the command `gulp` and the project will be built in the `dist` folder.
+  * You can review differences by comparing the `src` and `dist` folder.
 
 ##Optimizations
 
