@@ -47,4 +47,6 @@ Steps to re-build the project:
 ####pizza.html
 
 1. Resized large images to be a max width of 360px
-2. Minified `main.js`
+2. Refactor `changePizzaSizes()` in `main.js` to gather layout properties first and then batch style changes to prevent Force Synchronous Layout
+3. Refactor `updatePositions()` in `main.js` to reduce Scripting Time
+4. Minified `main.js`
