@@ -57,7 +57,7 @@ gulp.task('minifyJS', function() {
 });
 
 /** All Minify Tasks **/
-gulp.task('minify', ['minifyScreenCSS','minifyPrintCSS', 'minifyJS']);
+gulp.task('minify', ['minifyPrintCSS', 'minifyJS']);
 
 /** Compress Images **/
 gulp.task('resizeThumbs', function() {
