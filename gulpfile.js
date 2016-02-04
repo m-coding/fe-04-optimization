@@ -79,11 +79,17 @@ gulp.task('compressFolderImg', ['resizeThumbs'], function() {
 });
 
 gulp.task('compressFolderImages', ['compressFolderImg'], function() {
-    return gulp.src(['public/src/views/images/*'])
+    var jpgImages = gulp.src(['public/src/views/images/*.jpg'])
         .pipe(newer('public/dist/views/images'))
         .pipe(resize({ width: 360 }))
-        .pipe(imagemin({ progressive: true, use: [pngquant()] })).on('error', errorHandler)
+        .pipe(imagemin({ progressive: true })).on('error', errorHandler)
         .pipe(gulp.dest('public/dist/views/images'));
+    var pngImages =  gulp.src(['public/src/views/images/*.png'])
+        .pipe(newer('public/dist/views/images'))
+        .pipe(resize({ width: 77, height: 100 })).on('error', errorHandler)
+        .pipe(imagemin({ use: [pngquant()] }))
+        .pipe(gulp.dest('public/dist/views/images'));
+    return merge(jpgImages, pngImages);
 });
 
 /** All Image Compression Tasks **/
@@ -108,13 +114,8 @@ gulp.task('copyJS', ['copyCSS'], function() {
         .pipe(gulp.dest('public/dist/js'));
 });
 
-gulp.task('copyPIZZA', ['copyJS'], function() {
-    return gulp.src('public/src/views/images/pizza.png')
-        .pipe(gulp.dest('public/dist/views/images'));
-});
-
 /** All Copy File Tasks **/
-gulp.task('copy', ['copyHTML','copyCSS','copyJS','copyPIZZA']);
+gulp.task('copy', ['copyHTML','copyCSS','copyJS']);
 
 /** Display Errors **/
 function errorHandler (error) {
