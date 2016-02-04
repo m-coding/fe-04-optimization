@@ -42,7 +42,7 @@ gulp.task('minifyScreenCSS', function() {
         .pipe(gulp.dest('public/dist/css'));
 });
 
-gulp.task('minifyPrintCSS', function() {
+gulp.task('minifyPrintCSS', ['lint'], function() {
     return gulp.src('public/src/css/print.css')
         .pipe(rename({suffix: '.min'}))
         .pipe(cssnano())
@@ -50,7 +50,7 @@ gulp.task('minifyPrintCSS', function() {
 });
 
 /** Minify JS **/
-gulp.task('minifyJS', function() {
+gulp.task('minifyJS', ['minifyPrintCSS'], function() {
     return gulp.src('public/src/views/js/main.js')
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
@@ -61,7 +61,7 @@ gulp.task('minifyJS', function() {
 gulp.task('minify', ['minifyPrintCSS', 'minifyJS']);
 
 /** Compress Images **/
-gulp.task('resizeThumbs', function() {
+gulp.task('resizeThumbs', ['minifyJS'], function() {
     return gulp.src(['public/src/img/th_*', 'public/src/views/images/pizzeria.jpg'])
         // Add the newer pipe to pass through newer images only
         .pipe(newer('public/dist/img'))
@@ -70,7 +70,7 @@ gulp.task('resizeThumbs', function() {
         .pipe(gulp.dest('public/dist/img'));
 });
 
-gulp.task('compressFolderImg', function() {
+gulp.task('compressFolderImg', ['resizeThumbs'], function() {
     return gulp.src(['public/src/img/*', '!public/src/img/th_*'])
         .pipe(newer('public/dist/img'))
         .pipe(resize({ width: 480 }))
@@ -78,7 +78,7 @@ gulp.task('compressFolderImg', function() {
         .pipe(gulp.dest('public/dist/img'));
 });
 
-gulp.task('compressFolderImages', function() {
+gulp.task('compressFolderImages', ['compressFolderImg'], function() {
     return gulp.src(['public/src/views/images/*'])
         .pipe(newer('public/dist/views/images'))
         .pipe(resize({ width: 360 }))
@@ -90,7 +90,7 @@ gulp.task('compressFolderImages', function() {
 gulp.task('compress', ['resizeThumbs', 'compressFolderImg', 'compressFolderImages']);
 
 /** Copy Files **/
-gulp.task('copyHTML', function() {
+gulp.task('copyHTML', ['compressFolderImages'], function() {
     var srcHTML = gulp.src('public/src/*.html')
         .pipe(gulp.dest('public/dist'));
     var viewsHTML = gulp.src('public/src/views/pizza.html')
@@ -98,17 +98,17 @@ gulp.task('copyHTML', function() {
     return merge(srcHTML, viewsHTML);
 });
 
-gulp.task('copyCSS', function() {
+gulp.task('copyCSS', ['copyHTML'], function() {
     return gulp.src('public/src/views/css/*.css')
         .pipe(gulp.dest('public/dist/views/css'));
 });
 
-gulp.task('copyJS', function() {
+gulp.task('copyJS', ['copyCSS'], function() {
     return gulp.src('public/src/js/perfmatters.js')
         .pipe(gulp.dest('public/dist/js'));
 });
 
-gulp.task('copyPIZZA', function() {
+gulp.task('copyPIZZA', ['copyJS'], function() {
     return gulp.src('public/src/views/images/pizza.png')
         .pipe(gulp.dest('public/dist/views/images'));
 });
