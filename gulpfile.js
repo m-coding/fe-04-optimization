@@ -34,8 +34,15 @@ gulp.task('lint', function () {
 });
 
 /** Minify CSS **/
-gulp.task('minifyCSS', function() {
-    return gulp.src('public/src/css/styles.css')
+gulp.task('minifyScreenCSS', function() {
+    return gulp.src('public/src/css/style.css')
+        .pipe(rename({suffix: '.min'}))
+        .pipe(cssnano())
+        .pipe(gulp.dest('public/dist/css'));
+});
+
+gulp.task('minifyPrintCSS', function() {
+    return gulp.src('public/src/css/print.css')
         .pipe(rename({suffix: '.min'}))
         .pipe(cssnano())
         .pipe(gulp.dest('public/dist/css'));
@@ -50,7 +57,7 @@ gulp.task('minifyJS', function() {
 });
 
 /** All Minify Tasks **/
-gulp.task('minify', ['minifyCSS','minifyJS']);
+gulp.task('minify', ['minifyScreenCSS','minifyPrintCSS', 'minifyJS']);
 
 /** Compress Images **/
 gulp.task('resizeThumbs', function() {
