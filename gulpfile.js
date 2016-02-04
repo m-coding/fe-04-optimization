@@ -58,6 +58,7 @@ gulp.task('resizeThumbs', function() {
         // Add the newer pipe to pass through newer images only
         .pipe(newer('public/dist/img'))
         .pipe(resize({ width: 100, height: 62, crop: true }))
+        .pipe(imagemin({ progressive: true })).on('error', errorHandler)
         .pipe(gulp.dest('public/dist/img'));
 });
 
