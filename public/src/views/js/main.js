@@ -491,27 +491,29 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  // use getElementsByClassName because it looks up faster than querySelectorAll
-  var items = document.getElementsByClassName('.mover');
+  // Use getElementsByClassName because it looks up faster than querySelectorAll
+  var items = document.getElementsByClassName('mover');
 
-  // save this constant outside of the loop
+  // Save this constant outside of the loop
   var bodyScrollTop = document.body.scrollTop;
 
-  // save the values for the 5 repeated phase sequence into an array
+  // Save the values for the 5 repeated phase sequence into an array
   var phaseSequence = [];
 
-  // % operator divides two numbers and returns only the remainder
-  // this will create a repeated sequence because every Nth value should be evenly divisible by N and the remainder will reset
+  // The % operator divides two numbers and returns only the remainder
+  // This will create a repeated sequence because every Nth value should be evenly divisible by N and the remainder will reset
   // http://www.bennadel.com/blog/665-and-on-the-seventh-row-mod-created-1-and-it-was-good.htm
   for (var p = 0; p < 5; p++) {
     phaseSequence.push(Math.sin((bodyScrollTop / 1250) + p));
   } // for
 
-  // set the style seperately
+  // Set the style seperately
   for (var i = 0; i < items.length; i++) {
       var phase = phaseSequence[i % 5];
 
-      items[i].style.left = items[i].basicLeft + 100 * phase[i] + 'px';
+      // Use 'transform' so Paint is not triggered see http://csstriggers.com
+      // Use 'translateX' to move the pizza along the x-axis
+      items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
   } // for
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -534,12 +536,10 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    elem.src = 'images/pizza.png';
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementById('movingPizzas1').appendChild(elem);
   }
   updatePositions();
 });
