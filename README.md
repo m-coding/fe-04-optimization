@@ -23,6 +23,9 @@ View on github at [http://m-coding.github.io/fe-04-optimization](http://m-coding
   * In your terminal enter the command:
     * `npm install`
     * This will install all modules listed as dependencies in `package.json`
+  * Windows Tip:
+  * You see the error `Please try running this command again as root/Adminstrator`
+  * Start [Git Bash](https://git-scm.com/downloads) as administrator (right-click and select _Run as adminstrator_)
 
 ##Build the Project
 
