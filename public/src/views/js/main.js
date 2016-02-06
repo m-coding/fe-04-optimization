@@ -442,7 +442,7 @@ var resizePizzas = function(size) {
     } // switch
 
     // Use getElementsByClassName instead of querySelectorAll
-    var pizzas = document.getElementsByClassName(".randomPizzaContainer");
+    var pizzas = document.getElementsByClassName("randomPizzaContainer");
     var pizzasLength = pizzas.length;
 
     for (var i = 0; i < pizzasLength; i++) {
