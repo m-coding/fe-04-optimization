@@ -51,8 +51,9 @@ form {
 }
 
 .mover {
-    width: 77px;
-    height: 100px;
+    backface-visibility: hidden;
     transform: translateZ(0);
     will-change: transform;
+    width: 77px;
+    height: 100px;
 }
