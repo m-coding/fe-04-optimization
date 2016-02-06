@@ -59,18 +59,22 @@ Make sure you satisfy the Build Tool Requirements first.
 1. Resized large images to be a max width of 360px
 2. Add properties to the `.mover` class in `style.css`
   * Set width and height properties
+  * Add `backface-visibility: hidden;` property
   * Add `transform: translateZ(0);` and `will-change: transform;` properties
-3. Refactor `changePizzaSizes()` in `main.js` to prevent Force Synchronous Layout
+3. Replace `querySelector` with `getElementById` in `resizePizzas`
+4. Refactor `changePizzaSizes()` in `main.js` to prevent Force Synchronous Layout
   * Move `sizeSwitcher()` logic here and remove `determineDx()`
-  * Create new variable outside loop
+  * Use `getElementsByClassName` instead of `querySelectorAll`
+  * Move constant variables outside for loops
   * Simplified loop logic
-4. Refactor `updatePositions()` in `main.js` to reduce Scripting Time
+5. Refactor `updatePositions()` in `main.js` to reduce Scripting Time
   * Use `getElementsByClassName` instead of `querySelectorAll`
   * Save `scrollTop` variable outside loop
   * Save phase sequence values in an array
   * Use `transform` instead of `left` to set x-axis position of `pizza.png`
-5. Refactor `DOMContentLoaded` event listener function
+6. Refactor `DOMContentLoaded` event listener function
+  * Declare variables outside of loop
   * Removed `height` and `width` properties, already defined in `.mover` class
   * Removed `basicLeft` and set `left` property
   * Use `getElementById` instead of `querySelector`
-6. Minified `main.js`
+7. Minified `main.js`
