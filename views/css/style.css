@@ -51,8 +51,10 @@ form {
 }
 
 .mover {
-    backface-visibility: hidden;
-    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
     will-change: transform;
     width: 77px;
     height: 100px;
